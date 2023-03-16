@@ -2,17 +2,18 @@
 title: 'DSCI 310: Historical Horse Population in Canada'
 author: "Tiffany Timbers & Jordan Bourak"
 output:
-  bookdown::html_document2:
-    
-    number_sections: true
-    toc: true
-    toc_depth: 2
   bookdown::pdf_document2:
     number_sections: true
     toc: true
     toc_depth: 2
+    citation_package: natbib
+  bookdown::html_document2:
+    number_sections: true
+    toc: true
+    toc_depth: 2
+    theme: united
+    highlight: espresso
 bibliography: references.bib
-base_format: rticles::jss_article
 --- 
 ```{r include=FALSE, message=FALSE}
 library(tidyverse)
@@ -41,7 +42,7 @@ Suppose we were interested in looking in more closely at the province with the h
 ```{r horses-sd-table, echo=FALSE, message = FALSE, warning=FALSE}
 horses_sd_table <- read_csv("../../results/horses_sd.csv")
 largest_sd <- horses_sd_table$Province[1]
-knitr::kable(horses_sd_table, caption = "Sample standard deviations of horse populations for each province in Canada between 1906 and 1972.")
+knitr::kable(horses_sd_table, align = "cc", caption = "Sample standard deviations of horse populations for each province in Canada between 1906 and 1972.")
 ```
 
 Note that we define standard deviation (of a sample) as
@@ -50,7 +51,7 @@ $$s = sqrt( sum_{i = 1}^n(x_i - \bar{x}) / (n-1))$$
 
 Additionally, note that in Table \@ref(tab:horses-sd-table) we consider the sample standard deviation of the number of horses during the same time span as Figure \@ref(fig:horse-pops-plot).
 
-```{r horse-pop-plot-largest-sd, echo=FALSE, out.width='50%', fig.align='center', fig.cap= "Horse populations for the province with the largest standard deviation."}
+```{r horse-pop-plot-largest-sd, echo=FALSE, out.width='60%', fig.align='center', fig.cap= "Horse populations for the province with the largest standard deviation."}
 knitr::include_graphics("../../results/horse_pop_plot_largest_sd.png")
 ```
 In Figure \@ref(fig:horse-pop-plot-largest-sd) we zoom in and look at the province of `r largest_sd`, which had the largest spread of values in terms of standard deviation.
